@@ -1,4 +1,4 @@
-from flask import Flask, request, make_response, render_template
+from flask import Flask, request, make_response, render_template, send_from_directory
 from flask_httpauth import HTTPBasicAuth
 from configparser import ConfigParser
 import os
@@ -43,6 +43,11 @@ if not "essentials" in os.listdir():
 app = Flask(__name__)
 auth = HTTPBasicAuth()
 
+@app.route('/favicon.ico')
+def favicon():
+    return send_from_directory(os.path.join(app.root_path, 'static'),
+                               'favicon.ico', mimetype='image/vnd.microsoft.icon')
+
 @auth.verify_password
 def verify_password(username, password):
     if config_password == password and config_username == username:
@@ -58,6 +63,10 @@ def get_submission():
         f.write(f"{request.form['sd']}\n{request.form['nand']}\n{request.form['twln']}\n{request.form['secinfo']}")
 
     return "<p>Hi</p>"
+
+@app.route('/')
+def index():
+    return render_template('index.html')
 
 @app.route('/admin')
 @auth.login_required

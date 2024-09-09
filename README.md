@@ -42,3 +42,7 @@ To run the flask app, activate the venv and run:
 ```bash
 gunicorn -w 1 app:app
 ```
+
+# Credits
+original application, code and ideation by gruetzig
+currently hosted and made available by eip and nintendo homebrew
