@@ -9,7 +9,7 @@
 DrawContext ctx;
 
 #ifndef SERVER_ADDRESS
-#define SERVER_ADDRESS "0.0.0.0"
+#define SERVER_ADDRESS "https://soap.nintendohomebrew.com/submit"
 #endif
 
 void enter(char* inout, size_t len) {
@@ -35,7 +35,7 @@ int main() {
         goto fail;
     }
     char discordtag[33] = "";
-    char address[52] = SERVER_ADDRESS;
+    char address[52] = "https://soap.nintendohomebrew.com/submit";
     initContext(&ctx);
     initColors(&ctx);
     int menustate = 0;
